@@ -4,7 +4,8 @@
 > 저는 **백엔드**로 참여해 **AI 레퍼런스 추천 파이프라인 · 검색 · 인증 · 데이터 적재**를 담당했습니다.
 > · 2026.04 – 2026.07_
 
-> - 🔬 제가 설계·구현한 **AI 추천 백엔드 상세**(파이프라인 심화): **[YujinB/drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend)**
+> - 피봇 후 UX가 변경되며 레퍼런스 추천과 가이드 생성·레퍼런스 생성이 분리되었습니다. 또한 레퍼런스 추천이 채팅 흐름이 아닌 검색 기반 추천으로 변경되었습니다. 
+> - 🔬 해당 레포지토리는 피봇 전 설계·구현한 채팅 기반 레퍼런스 추천 로직이 있습니다. **AI 추천 백엔드 상세**(파이프라인 심화): **[YujinB/drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend)**
 > - 🖼 **한 끗 가이드(이미지 코칭)·인프라는 팀원 담당**입니다. 제품 전체 소개·아키텍처는 [`docs/SDS/`](docs/SDS/README.md) 참고.
 > - 🗂 원본 팀 레포(이슈·PR·리뷰 이력): [DraWeTeam/drawe](https://github.com/DraWeTeam/drawe)
 
@@ -73,7 +74,7 @@
 
 ## 📚 링크
 
-- 🔬 [YujinB/drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend) — 제가 설계·구현한 **AI 레퍼런스 추천 백엔드 심화** (파이프라인 단계별 설계)
+- 🔬 [YujinB/drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend) — 피봇 전 설계·구현한 **AI 레퍼런스 추천 백엔드 심화** (파이프라인 단계별 설계)
 - 📐 [`docs/SDS/`](docs/SDS/README.md) — 시스템 설계 문서 (아키텍처·데이터·다이어그램)
 - 📦 [`backend/README.md`](backend/README.md) · [`fastapi/README.md`](fastapi/README.md) · [`frontend/README.md`](frontend/README.md) · [`infra/README.md`](infra/README.md) — 각 파트 상세
 - 🔗 [DraWeTeam/drawe](https://github.com/DraWeTeam/drawe) — 원본 팀 레포 (이슈·PR·리뷰 이력, 내 PR: `is:pr author:YujinB`)
