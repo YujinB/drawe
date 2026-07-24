@@ -36,14 +36,14 @@ Drawe는 **AI 레퍼런스 추천·생성**으로 탐색을 받치고, **한 끗
 
 ## 👨‍💻 주요 담당 역할 (백엔드)
 
-### 🤖 AI 레퍼런스 추천 _(추천 로직 · 설계·구현 → 심화: [drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend))_
+### 🤖 AI 레퍼런스 추천 _(추천 로직 · 설계·구현 → 피벗 전 채팅 기반 추천: [drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend))_
 
 - 한국어 **키워드 추출 파이프라인** (형태소 분석 + 미술 사용자 사전 + Grok 폴백)
 - **CLIP + Tag IDF 하이브리드 re-rank**, 핀 레퍼런스 분리 주입
 - **멀티턴 세션 컨텍스트 관리**(Redis 단기메모리) + 토큰 비용 최적화(프롬프트 캐시)
 - 레퍼런스 보드 검색 + 좋아요/싫어요 **피드백 루프** (피벗 후 재설계, 검색어 변경 시 노출 이력 리셋)
 
-### 🧩 백엔드 API 개발 _(일반)_
+### 🧩 백엔드 API 개발
 
 - **프로젝트**: 생성·수정 CRUD, QueryDSL 기반 정렬·전역 검색·페이지네이션 _(백엔드 + 프론트 UI, 풀스택)_
 - **인증**: Google OAuth2 + JWT 소셜 로그인, 비밀번호 재설정 _(Spring Security)_
