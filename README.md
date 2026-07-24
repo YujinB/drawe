@@ -2,9 +2,9 @@
 
 > **그림 그리는 사람을 위한 AI 레퍼런스 추천 · 드로잉 코칭 서비스.**
 > 원하는 레퍼런스를 키워드로 찾고, 막혔을 땐 내 그림 위에서 개선 포인트를 짚어주는 **연습 파트너**입니다.
->
-> _팀 프로젝트 · 2026.04 – 2026.07 · 저는 **백엔드**를 담당했습니다._
-> **팀 구성** — PM 이현정 · PD 이희진 · Backend **백유진** · 박성진 · Cloud 서혜경
+
+**팀 프로젝트** · 2026.04 – 2026.07 · 백엔드 담당<br>
+**팀 구성** — PM 이현정 · PD 이희진 · Backend **백유진** · 박성진 · Cloud 서혜경
 
 > **저장소 안내**
 > - 이 저장소는 **피벗 이후 최종 제품(팀 전체 모노레포)** 입니다. 피벗으로 레퍼런스 추천이 채팅 흐름 → **키워드 검색 기반**으로 전환되고, 가이드·레퍼런스 생성이 분리되었습니다.
@@ -36,24 +36,19 @@ Drawe는 **AI 레퍼런스 추천·생성**으로 탐색을 받치고, **한 끗
 
 ## 👨‍💻 주요 담당 역할 (백엔드)
 
-인증·프로젝트·검색 등 도메인별 **REST API**를 설계·구현했으며, 주요 작업은 다음과 같습니다.
+### 🤖 AI 레퍼런스 추천 _(추천 로직 · 설계·구현 → 심화: [drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend))_
 
-**AI 레퍼런스 추천 파이프라인** _(설계·구현 → 심화: [drawe-ai-backend](https://github.com/YujinB/drawe-ai-backend))_
-- 한국어 키워드 추출 파이프라인 (형태소 분석 + 미술 사용자 사전 + Grok 폴백)
-- CLIP + Tag IDF 하이브리드 re-rank, 핀 레퍼런스 분리 주입
-- 멀티턴 세션 컨텍스트 관리(**Redis** 단기메모리) 및 토큰 비용 최적화(프롬프트 캐시)
+- 한국어 **키워드 추출 파이프라인** (형태소 분석 + 미술 사용자 사전 + Grok 폴백)
+- **CLIP + Tag IDF 하이브리드 re-rank**, 핀 레퍼런스 분리 주입
+- **멀티턴 세션 컨텍스트 관리**(Redis 단기메모리) + 토큰 비용 최적화(프롬프트 캐시)
+- 레퍼런스 보드 검색 + 좋아요/싫어요 **피드백 루프** (피벗 후 재설계, 검색어 변경 시 노출 이력 리셋)
 
-**레퍼런스 보드 · 검색** _(피벗 후 재설계)_
-- 키워드 검색 기반 추천 + 좋아요/싫어요 피드백 루프
-- 검색어 변경 시 노출 이력 리셋으로 신선도 유지
+### 🧩 백엔드 API 개발 _(일반)_
 
-**프로젝트 · 데이터**
-- 프로젝트 생성·수정, **QueryDSL** 기반 정렬·전역 검색·페이지네이션 (백엔드 + 프론트 UI, 풀스택)
-- 초기 레퍼런스 데이터 적재·전처리(공통 구조화)
-
-**인증 · 온보딩 · 피드백**
-- **Google OAuth2 + JWT** 소셜 로그인, 비밀번호 재설정 (Spring Security)
-- 선호 태그 온보딩, 이미지 피드백
+- **프로젝트**: 생성·수정 CRUD, **QueryDSL** 기반 정렬·전역 검색·페이지네이션 _(백엔드 + 프론트 UI, 풀스택)_
+- **인증**: Google OAuth2 + JWT 소셜 로그인, 비밀번호 재설정 _(Spring Security)_
+- **온보딩·피드백**: 선호 태그 온보딩, 이미지 피드백 수집
+- **데이터**: 초기 레퍼런스 데이터 적재·전처리(공통 구조화)
 
 > **제한된 팀 구성**(프론트엔드·AI 전담 인력 부재) 속에서, 백엔드를 맡으면서 **AI 추천 에이전트 파이프라인을 직접 학습하며 구현**했고, 제가 만든 기능과 그 외 일부 기능의 **화면(React)까지** 개발했습니다.
 
@@ -88,9 +83,12 @@ Drawe는 **AI 레퍼런스 추천·생성**으로 탐색을 받치고, **한 끗
 
 ---
 
-## 🛠 기술 스택 (백엔드)
+## 🛠 기술 스택
 
-`Java 17` · `Spring Boot 3.2` · `Spring Security / OAuth2` · `JPA` · `QueryDSL` · `Flyway` · `MySQL` · `Redis(Valkey)` · `WebFlux(WebClient)` · `Pinecone(벡터 검색)` · `LLM(Grok·Claude·Gemini)`
+- **Backend**: Java 17, Spring Boot 3.2, Spring Security, OAuth2, JPA, QueryDSL, REST API, Swagger
+- **Database / Cache**: MySQL, Redis(Valkey)
+- **AI 연동**: Pinecone(벡터 검색), LLM(Grok · Claude · Gemini), WebClient(WebFlux)
+- **DevOps / 협업**: Git, GitHub, Docker
 
 > 배포는 AWS EKS(Graviton) · ArgoCD GitOps · OpenTelemetry (인프라 팀원 담당). 전체 스택은 [`docs/SDS/`](docs/SDS/README.md) 참고.
 
