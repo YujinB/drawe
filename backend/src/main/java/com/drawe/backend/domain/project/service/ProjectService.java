@@ -21,6 +21,8 @@ import com.drawe.backend.global.error.ErrorCode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,13 +105,18 @@ public class ProjectService {
     List<Project> projects = projectRepository.findPage(user, status, sort, q, limit, offset);
     long total = projectRepository.countPage(user, status, q);
 
+    // 레퍼런스 개수는 프로젝트마다 개별 COUNT(N+1) 대신 한 번에 배치 집계한다.
+    Map<Long, Long> referenceCounts =
+        projectReferenceRepository.countByProjectIn(projects).stream()
+            .collect(Collectors.toMap(row -> (Long) row[0], row -> (Long) row[1]));
+
     List<ProjectListItem> items =
         projects.stream()
             .map(
                 p ->
                     ProjectListItem.of(
                         p,
-                        projectReferenceRepository.countByProject(p),
+                        referenceCounts.getOrDefault(p.getId(), 0L),
                         signed(p.getCoverImageUrl())))
             .toList();
 

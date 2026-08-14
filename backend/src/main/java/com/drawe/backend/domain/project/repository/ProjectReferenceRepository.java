@@ -14,6 +14,12 @@ public interface ProjectReferenceRepository extends JpaRepository<ProjectReferen
 
   long countByProject(Project project);
 
+  /** 프로젝트 목록 카드의 레퍼런스 개수 배치 집계(N+1 방지) — 프로젝트별로 개별 COUNT 대신 한 번에 그룹핑해서 가져온다. */
+  @Query(
+      "SELECT r.project.id, COUNT(r) FROM ProjectReference r "
+          + "WHERE r.project IN :projects GROUP BY r.project.id")
+  List<Object[]> countByProjectIn(@Param("projects") List<Project> projects);
+
   /** 완성작 상세 타임라인 — 한 프로젝트의 레퍼런스를 추가순(addedAt ASC)으로. */
   List<ProjectReference> findByProjectOrderByAddedAtAsc(Project project);
 
