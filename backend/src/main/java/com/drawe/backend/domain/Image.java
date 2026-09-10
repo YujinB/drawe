@@ -21,7 +21,7 @@ import org.hibernate.type.SqlTypes;
 @Table(
     name = "images",
     indexes = {
-      @Index(name = "idx_img_src_srcId", columnList = "source, source_id"),
+      @Index(name = "idx_img_src_srcId", columnList = "source_id, source"),
       @Index(name = "idx_img_embedding", columnList = "embedding_id")
     })
 public class Image {
